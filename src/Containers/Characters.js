@@ -5,7 +5,6 @@ import { useDebounce } from 'use-debounce';
 import CharCard from "../Components/CharCard";
 import Searchbar from "../Components/Searchbar";
 import Loader from "../Components/Loader";
-import Cookies from "js-cookie";
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -36,12 +35,11 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
     const fetchData = async () => {
       setLimit(100);
       setIsLoading(true);
-      const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/characters?
-      &skip=${skip}&limit=${limit}&name=${value}&apiKey=sGdBjvSQE8P4JwAC`);
+      const response = await axios.get(`${process.env.REACT_APP_MARVEL_API}/characters?
+      &skip=${skip}&limit=${limit}&name=${value}&${process.env.REACT_APP_PRIVATE_KEY}`);
       setData(response.data.results);
       setTotalResults(response.data.count);
       setIsLoading(false);
-      console.log(Cookies.get("token"));
     };
     fetchData();
   }, [value, skip, limit]);

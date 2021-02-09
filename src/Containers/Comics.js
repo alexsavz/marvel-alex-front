@@ -46,8 +46,8 @@ const classes = useStyles();
   useEffect(()=> {
     const fetchData = async () => {
       setLimit(100);
-      const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comics?
-      title=${value}&skip=${skip}&limit=${limit}&apiKey=sGdBjvSQE8P4JwAC`);
+      const response = await axios.get(`${process.env.REACT_APP_MARVEL_API}/comics?
+      title=${value}&skip=${skip}&limit=${limit}&${process.env.REACT_APP_PRIVATE_KEY}`);
       setData(response.data.results);
       setIsLoading(false);
       setTotalResults(response.data.count);

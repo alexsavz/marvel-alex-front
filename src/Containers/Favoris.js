@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Loader from "../Components/Loader";
+import backgroundImage from "../Assets/94672.jpg";
 
 const Favoris = ({token}) => {
 
@@ -10,19 +11,21 @@ const Favoris = ({token}) => {
     const history = useHistory();
 
   useEffect(()=> {
-    const fetchData = async () => {
-      const response = await axios.get("https://marvel-alex-back.herokuapp.com/list",{
-        headers: {
-          Authorization: "Bearer " + token,
-          }
-        } );
-      setData(response.data);
-      setIsLoading(false);
-    };
-    fetchData();
+    if(token){
+        const fetchData = async () => {
+            const response = await axios.get(`${process.env.REACT_APP_BACK_API}/list`,{
+              headers: {
+                Authorization: "Bearer " + token,
+                }
+              } );
+            setData(response.data);
+            setIsLoading(false);
+          };
+          fetchData();
+    }
   }, [token]);
 
-  console.log(data);
+//   console.log(data);
 
   return !isLoading ?(
     <div className="wrapper">
@@ -58,9 +61,14 @@ const Favoris = ({token}) => {
 )
 :
 (
-<>
-    <Loader />
-</>
+    token ?
+    <>
+        <Loader />
+    </>
+    :
+    <>
+        <img className="background-image" src={backgroundImage} alt="marvel"/>
+    </>
   );
 }
 

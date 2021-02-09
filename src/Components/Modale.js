@@ -37,7 +37,7 @@ const Modale = ({handleModale, modale}) => {
   event.preventDefault();
   console.log(contact);
 
-    await axios.post("https://marvel-alex-back.herokuapp.com/user/signup", contact)
+    await axios.post(`${process.env.REACT_APP_BACK_API}/user/signup`, contact)
     .then(response => {
       console.log(response.data);
       Cookies.set("token", response.data.token,{ expires: 7 });
@@ -52,7 +52,7 @@ const Modale = ({handleModale, modale}) => {
     event.preventDefault();
     console.log(contact);
   
-      await axios.post("https://marvel-alex-back.herokuapp.com/user/signIn", contact)
+      await axios.post(`${process.env.REACT_APP_BACK_API}/user/signIn`, contact)
       .then(response => {
         console.log(response.data);
         Cookies.set("token", response.data.token,{ expires: 7 });
@@ -66,7 +66,7 @@ const Modale = ({handleModale, modale}) => {
   return (
     <div className={modale ? "modal" : "hidden"}>
       <section className="modal-form">
-        <button onClick={() => handleModale(false)}>Close</button>
+        <button className="close-modal" onClick={() => handleModale(false)}>Close</button>
         <form onSubmit={ signUp ? handleSubmitSignUp : handleSubmitSignIn} >
           <div className="modal-image">
             <img src={marvel} alt="marvel insider"/>

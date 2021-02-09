@@ -4,7 +4,7 @@ import Modale from "../Components/Modale";
 import marvelLogo from "../Assets/langfr-1920px-MarvelLogo.svg_uw9pi8.png";
 import disney from "../Assets/svod_logo_white-homepage.png";
 
-const Header = ({setUser}) => {
+const Header = () => {
 
     const history = useHistory();
     const [modale, setModale] = useState(null);
@@ -35,7 +35,7 @@ const Header = ({setUser}) => {
             <div className="header-two">
                 <button
                     onClick={() => {
-                    history.push("/characters");
+                    history.push("/");
                     }}
                     className="header-button">
                     Personnages

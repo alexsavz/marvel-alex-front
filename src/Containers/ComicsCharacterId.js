@@ -13,7 +13,7 @@ const ComicsCharacterId = () => {
 
     useEffect(()=> {
         const fetchData = async () => {
-        const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comics/${id}?apiKey=sGdBjvSQE8P4JwAC`);
+        const response = await axios.get(`${process.env.REACT_APP_MARVEL_API}/comics/${id}?${process.env.REACT_APP_PRIVATE_KEY}`);
         setData(response.data);
         setIsLoading(false);
         };

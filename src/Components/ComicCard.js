@@ -42,7 +42,7 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked,
                 <img className="comics" src={url} alt="comics"/>
             </div>
             {/* {data.description && <p>{data.description}</p>} */}
-            <div className="card-content">
+            <div className="card-content gradient">
                 <h3>{data.title}</h3>
                 {
                         token &&

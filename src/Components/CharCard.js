@@ -48,27 +48,27 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
 
   return (
     <div className="card" >
-            <div className="card-picture" onClick={() => history.push(`comics/${id}`)}>
-              <img className="character" src={url} alt="character"/>
-            </div>
-            <div className="card-content">
-                <h3>{title}</h3>
-                    {
-                        token &&
-                        <div className="card-favorite"> 
-                            <span>
-                            Ajouter aux favoris
-                            </span>
-                            <Switch 
-                            key={index} 
-                            checked={inFavorites} 
-                            onChange={handleSwitch} 
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                            />
-                        </div>
-                    }
-            </div>
-            </div>
+        <div className="card-picture" onClick={() => history.push(`comics/${id}`)}>
+            <img className="character" src={url} alt="character"/>
+        </div>
+        <div className="card-content gradient">
+            <h3>{title}</h3>
+                {
+                    token &&
+                    <div className="card-favorite"> 
+                        <span>
+                        Ajouter aux favoris
+                        </span>
+                        <Switch 
+                        key={index} 
+                        checked={inFavorites} 
+                        onChange={handleSwitch} 
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />
+                    </div>
+                }
+        </div>
+    </div>
 );
 }
 

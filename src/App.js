@@ -57,7 +57,7 @@ function App() {
             formData.append("url", favorite.url);
             formData.append("user", favorite.user);
     
-          await axios.post("https://marvel-alex-back.herokuapp.com/createfav", formData);
+          await axios.post(`${process.env.REACT_APP_BACK_API}/createfav`, formData);
           console.log("save in the db");
           }
         } catch (error) {
@@ -74,7 +74,7 @@ function App() {
             formData.append("id", notFavorite.id);
             formData.append("user", notFavorite.user);
     
-          await axios.post("https://marvel-alex-back.herokuapp.com/deletefav", formData);
+          await axios.post(`${process.env.REACT_APP_BACK_API}/deletefav`, formData);
           console.log("delete from the db");
           }
         } catch (error) {
@@ -85,7 +85,7 @@ function App() {
     }
     if(token){
       const fetchFavoritesList = async () => {
-        const list = await axios.get('https://marvel-alex-back.herokuapp.com/list',{
+        const list = await axios.get(`${process.env.REACT_APP_BACK_API}/list`,{
           headers: {
             Authorization: "Bearer " + token,
             }
@@ -99,13 +99,13 @@ function App() {
   // console.log(favorite);
   // console.log(checked);
   // console.log(notFavorite);
-  console.log(favoritesList);
+  // console.log(favoritesList);
 
   return (
     <Router>
       <Header token={token} setUser={setUser} />
       <Switch>
-        <Route path="/characters">
+        <Route exact path="/">
           <Characters 
           token={token} 
           setFavorite={setFavorite} 
