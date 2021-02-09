@@ -27,11 +27,11 @@ function App() {
     url:"",
     user: token
   })
-
   const [notFavorite, setNotFavorite] = useState({
     id: null,
     user: token
   });
+  const [favoritesList, setFavoritesList] = useState([]);
 
   const setUser = (token) => {
     if (token) {
@@ -83,12 +83,23 @@ function App() {
       }
       HandleNotFavorite();
     }
-    
-  }, [checked, favorite, notFavorite]);
+    if(token){
+      const fetchFavoritesList = async () => {
+        const list = await axios.get('https://marvel-alex-back.herokuapp.com/list',{
+          headers: {
+            Authorization: "Bearer " + token,
+            }
+          });
+        setFavoritesList(list.data);
+      } 
+      fetchFavoritesList();
+    }
+  }, [checked, favorite, notFavorite,token]);
   
-  console.log(favorite);
-  console.log(checked);
-  console.log(notFavorite);
+  // console.log(favorite);
+  // console.log(checked);
+  // console.log(notFavorite);
+  console.log(favoritesList);
 
   return (
     <Router>
@@ -100,6 +111,7 @@ function App() {
           setFavorite={setFavorite} 
           setChecked={setChecked}
           setNotFavorite={setNotFavorite}
+          favoritesList={favoritesList}
            />
         </Route>
         <Route path="/comics/:id">
@@ -111,6 +123,7 @@ function App() {
           setFavorite={setFavorite} 
           setChecked={setChecked}
           setNotFavorite={setNotFavorite}
+          favoritesList={favoritesList}
           />
         </Route>
         <Route path="/favoris">

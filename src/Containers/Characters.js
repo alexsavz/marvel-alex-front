@@ -9,8 +9,7 @@ import Cookies from "js-cookie";
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
-
-const Characters = ({setFavorite, setNotFavorite, setChecked, token}) => {
+const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesList}) => {
 
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -87,6 +86,7 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token}) => {
               setNotFavorite={setNotFavorite}
               setChecked={setChecked}
               token={token}
+              favoritesList={favoritesList}
               />
               )
           })

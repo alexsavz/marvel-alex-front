@@ -1,7 +1,18 @@
-import React from "react";
+import {useState, useEffect} from "react";
 import Switch from '@material-ui/core/Switch';
 
-const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked}) => {
+const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked, favoritesList}) => {
+
+    const [inFavorites, setInFavorites] = useState(false);
+
+    useEffect(() => {
+        const isFavorite = favoritesList.filter(favorite => {
+            return favorite.id === data.id;
+        });
+        if(isFavorite.length >= 1){
+            setInFavorites(true);
+        }
+    }, [favoritesList, data.id]);
 
     const url = data.thumbnail.path + "." + data.thumbnail.extension; 
 
@@ -33,12 +44,20 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked}
             {/* {data.description && <p>{data.description}</p>} */}
             <div className="card-content">
                 <h3>{data.title}</h3>
-                <div className="card-favorite">
-                    <span>
-                        Ajouter aux favoris
-                    </span>
-                    <Switch key={index} onChange={handleSwitch} inputProps={{ 'aria-label': 'primary checkbox' }} />
-                </div>
+                {
+                        token &&
+                        <div className="card-favorite"> 
+                            <span>
+                            Ajouter aux favoris
+                            </span>
+                            <Switch 
+                            key={index} 
+                            checked={inFavorites} 
+                            onChange={handleSwitch} 
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />
+                        </div>
+                    }
             </div>
             
         </div>

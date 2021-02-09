@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { useDebounce } from 'use-debounce';
 import ComicCard from "../Components/ComicCard";
@@ -8,7 +7,7 @@ import Loader from "../Components/Loader";
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
-const Comics = ({token, setFavorite, setNotFavorite, setChecked}) => {
+const Comics = ({token, setFavorite, setNotFavorite, setChecked, favoritesList}) => {
 
 const [data, setData] = useState([]);
 const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +20,8 @@ const totalPages = Math.ceil(totalResults / limit);
 
 
 
-// Pagination component style
+/* Pagination component style */
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -31,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
     }));
 
 const classes = useStyles();
+
+/* ---------------------------- */
 
   const handlePage = (number) => {
     if(number === 1){
@@ -82,6 +84,7 @@ const classes = useStyles();
                 setFavorite={setFavorite}
                 setNotFavorite={setNotFavorite}
                 setChecked={setChecked}
+                favoritesList={favoritesList}
                 />
                 )
             })

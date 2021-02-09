@@ -1,10 +1,21 @@
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Switch from '@material-ui/core/Switch';
 
-const CharCard = ({index, id, title, description, url, setFavorite, setNotFavorite, setChecked, token}) => {
+const CharCard = ({index, id, title, description, url, setFavorite, setNotFavorite, setChecked, token, favoritesList}) => {
 
     const history = useHistory();
+    const [inFavorites, setInFavorites] = useState(false);
+
+    useEffect(() => {
+        const isFavorite = favoritesList.filter(favorite => {
+            return favorite.id === id;
+        });
+        if(isFavorite.length >= 1){
+            setInFavorites(true);
+        }
+    }, [favoritesList, id]);
+    
     // const [isMousOver, setIsMousOver] = useState(false);
 
     // const handleMousOn = () => {
@@ -42,12 +53,20 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
             </div>
             <div className="card-content">
                 <h3>{title}</h3>
-                <div className="card-favorite">
-                    <span>
-                        Ajouter aux favoris
-                    </span>
-                    <Switch key={index} onChange={handleSwitch} inputProps={{ 'aria-label': 'primary checkbox' }} />
-                </div>
+                    {
+                        token &&
+                        <div className="card-favorite"> 
+                            <span>
+                            Ajouter aux favoris
+                            </span>
+                            <Switch 
+                            key={index} 
+                            checked={inFavorites} 
+                            onChange={handleSwitch} 
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />
+                        </div>
+                    }
             </div>
             </div>
 );
