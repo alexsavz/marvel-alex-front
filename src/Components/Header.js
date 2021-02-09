@@ -21,9 +21,9 @@ const Header = ({setUser}) => {
     <Modale handleModale={handleModale} modale={modale} />
     <header className="page-header">
         <div className="header-one">
-            <button className="button" onClick={() => handleModale(true)}>
+            <div className="header-image" onClick={() => handleModale(true)}>
                     Sign In | Join
-            </button>
+            </div>
             <div className="header-image">
                 <img src={marvelLogo} alt="marvel"/>
             </div>
