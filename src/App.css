@@ -1,38 +1,432 @@
-.App {
-  text-align: center;
+@import "./index.css";
+
+:root {
+  --darkgray: #202020;
+  --lightgray:  #393939;
+  --red: #e62429;
+  --white: #ffffff;
 }
 
-.App-logo {
-  height: 40vmin;
+
+body {
+  margin: 0;
+  font-family: "Roboto", 'Roboto Condensed', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #4B2020;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+input[type="checkbox"],
+button {
+  cursor: pointer;
+}
+
+input,
+button {
+  outline: none;
+}
+
+img {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font: 700 26px 'Roboto Condensed';
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 25px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h2 {
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+h3 {
+  font: 700 16px 'Roboto Condensed';
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* HEADER */
+
+.page-header {
+  width: 100%;
+  background-color: var(--darkgray);
+  color: #fff;
+  font-family: "Roboto",sans-serif;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header button {
+  border-left: 1px solid var(--lightgray);
+  border-right: 1px solid var(--lightgray);
+  background-color: var(--darkgray);
+  color: #fff;
+  font-family: "Roboto",sans-serif;
+  font-size:16px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  padding: 0 25px;
+}
+
+.header-one {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+}
+
+.header-one div:last-child{
+  flex: 1;
+}
+
+.header-one button {
+  flex: 1;
+}
+
+.header-image{
+  border-left: 1px solid var(--lightgray);
+  border-right: 1px solid var(--lightgray);
+  flex: 3;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-image img {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.header-image:last-child img {
+  width: 100px;
+}
+.page-header > div:last-child {
+  border-top: 1px solid var(--lightgray);
+}
+.header-two {
+  height: 40px;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-two button {
+  border: none;
+  margin: 0 40px;
+  border-bottom: 2px solid transparent;
+}
+
+.header-two button:hover{
+  color: #887b7b;
+  border-bottom: 2px solid var(--red);
+}
+
+/* SEARCHBAR */
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px #151515 solid;
+  padding-bottom: .4rem;
+  margin-bottom: 20px;
+}
+
+.searchbar input {
+  padding-left: 1.8rem;
+  width: 100%;
+  background-color: #ffffff;
+  height: 37px;
+  border: 1px solid #fff;
+  outline: none;
+  font-family: 'Roboto Condensed';
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.searchbar input::placeholder {
+  color: #F2F2F2;
+  font-size: 24px;
+  font-family: 'Roboto Condensed';
+}
+
+/* CARDS */
+
+.cards-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 230px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  box-shadow: inset 0 0 0 1px #dae4ed,0 5px 15px -5px rgba(0,0,0,.1);
+  cursor: pointer;
+}
+
+.card-picture{
+  height: 300px;
+  border-bottom: 3px solid var(--red);
+}
+
+.character{
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(1);
+  transition: all .2s linear;
+  overflow: hidden;
+  /* object-position: top center; */
+}
+
+.comics{
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transform: scaleX(1);
+  transition: all .2s linear;
+  overflow: hidden;
+  /* object-position: top center; */
+}
+
+.card-content {
+  background-color: var(--darkgray);
+  color: var(--white);
+  padding: 20px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.card-favorite {
+  display: flex;
+}
+
+.gradient {
+  position: relative;
+  /* background-image: linear-gradient(
+    to right,
+    hsl(211, 100%, 50%),
+    hsl(179, 100%, 30%)
+  ); */
+  z-index: 1;
+}
+
+.gradient::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to bottom,
+    var(--red),
+    var(--darkgray)
+  );
+  z-index: -1;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.gradient:hover::before {
+  opacity: 1;
+}
+
+/* CHARACTER PER COMICS */
+
+.character-name {
+  background-color: var(--white);
+  color: var(--darkgray);
+}
+
+/* MODALE */
+
+.modal {
+  background-color: rgb(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 2
+}
+
+.modal section {
+  width: 40%;
+  margin: 5% auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.modal-form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 50px 50px;
+}
+
+.modal-form form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-img {
+  margin: 55px 40px 25px;
+  height: 90px;
+}
+
+.modal-image img{
+  height: 100%;
+  margin: 0 auto 0;
+}
+
+
+.modal-main {
+  margin: 0 40px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+}
+
+.modal-main input {
+  border: none;
+  height: 45px;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px 0;
+  padding-left: 15px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #fff;
+}
+
+.modal-main input::placeholder {
+  color: var(--lightgray);
+  font-family: 'Roboto';
+}
+
+.submit-button {
+  border: none;
+  height: 45px;
+  width: 250px;
+  background-color: #ed161e;
+  border-radius: 5px;
   color: white;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 60px 0;
+  outline: none;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.create-account {
+  height: 45px;
+  width: 250px;
+  border: 1px solid var(--darkgray);
+  color: var(--darkgray);
+  background-color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 60px 0 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hr {
+  height:2px;
+  border-width:0;
+  color: var(--lightgray);
+  background-color: var(--lightgray);
+}
+
+
+.hidden {
+  display:none
+}
+
+/* PAGINATION  */
+
+.pagination {
+  margin: auto;
+}
+
+/* FAVORIS */
+
+.favorite {
+  width: 230px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favorite h3 {
+  padding: 20px 0;
+}
+
+.favorite > div:first-child {
+  height: 300px;
+  width: 100%;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  cursor: pointer;
+}
+
+.favorite-picture-characters img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.favorite-picture-comics img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+
+
+/* LOADER */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
