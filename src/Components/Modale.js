@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import marvel from "../Assets/nav-logos-insider.png";
@@ -7,6 +8,7 @@ const Modale = ({handleModale, modale}) => {
 
   const [contact, setContact] = useState({email: "", password: "", ConfirmPassword: ""});
   const [signUp, setSignUp] = useState(false);
+  const history = useHistory();
   
   // Controlled inputs
   
@@ -50,11 +52,11 @@ const Modale = ({handleModale, modale}) => {
 
   const handleSubmitSignIn = async (event) => {
     event.preventDefault();
-    console.log(contact);
+    // console.log(contact);
   
-      await axios.post(`${process.env.REACT_APP_BACK_API}/user/signIn`, contact)
+      await axios.post(process.env.REACT_APP_BACK_API+"/user/signIn", contact)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         Cookies.set("token", response.data.token,{ expires: 7 });
         handleModale(false);
       })
@@ -77,7 +79,7 @@ const Modale = ({handleModale, modale}) => {
             {
               signUp && <input type="password" placeholder="Confirmez votre mot-de-passe" name="ConfirmPassword" onChange={handleChange} value={contact.ConfirmPassword}/>
             }
-            <button className="submit-button" type="submit">Envoyer</button>
+            <button onClick={() => { history.push("/");}} className="submit-button" type="submit">Envoyer</button>
             <div className="hr"></div>
             {
               !signUp && <button className="create-account" onClick={() => {setSignUp(true);}}>CR&Eacute;ER UN COMPTE</button>

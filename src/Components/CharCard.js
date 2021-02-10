@@ -14,20 +14,11 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
         if(isFavorite.length >= 1){
             setInFavorites(true);
         }
-    }, [favoritesList, id]);
-    
-    // const [isMousOver, setIsMousOver] = useState(false);
-
-    // const handleMousOn = () => {
-    //     setIsMousOver(true);
-    // }
-
-    // const handleMousOut = () => {
-    //     setIsMousOver(false);
-    // }
+    }, []);
 
     const handleSwitch  = (event) => {
         setChecked(event.target.checked);
+        setInFavorites(event.target.checked);
         if(event.target.checked){
             setFavorite({
                 id: id,
@@ -39,6 +30,7 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
             });
         }
         else {
+            setFavorite(false);
             setNotFavorite({
                 id: id,
                 user: token

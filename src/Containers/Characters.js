@@ -8,7 +8,7 @@ import Loader from "../Components/Loader";
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
-const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesList}) => {
+const Characters = ({setFavorite, setNotFavorite, setChecked, checked, token, favoritesList}) => {
 
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -83,6 +83,7 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
               setFavorite={setFavorite}
               setNotFavorite={setNotFavorite}
               setChecked={setChecked}
+              checked={checked}
               token={token}
               favoritesList={favoritesList}
               />

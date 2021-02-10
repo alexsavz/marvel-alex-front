@@ -75,7 +75,6 @@ function App() {
             formData.append("user", notFavorite.user);
     
           await axios.post(`${process.env.REACT_APP_BACK_API}/deletefav`, formData);
-          console.log("delete from the db");
           }
         } catch (error) {
           console.log(error.message);
@@ -97,7 +96,7 @@ function App() {
   }, [checked, favorite, notFavorite,token]);
   
   // console.log(favorite);
-  // console.log(checked);
+  console.log(checked);
   // console.log(notFavorite);
   // console.log(favoritesList);
 
@@ -112,6 +111,7 @@ function App() {
           setChecked={setChecked}
           setNotFavorite={setNotFavorite}
           favoritesList={favoritesList}
+          checked={checked}
            />
         </Route>
         <Route path="/comics/:id">
@@ -124,6 +124,7 @@ function App() {
           setChecked={setChecked}
           setNotFavorite={setNotFavorite}
           favoritesList={favoritesList}
+          checked={checked}
           />
         </Route>
         <Route path="/favoris">
