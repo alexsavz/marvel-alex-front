@@ -25,8 +25,6 @@ const Favoris = ({token}) => {
     }
   }, [token]);
 
-//   console.log(data);
-
   return !isLoading ?(
     <div className="wrapper">
         <div>

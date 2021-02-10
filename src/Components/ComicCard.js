@@ -7,7 +7,7 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked,
 
     useEffect(() => {
         const isFavorite = favoritesList.filter(favorite => {
-            return favorite.id === data.id;
+            return favorite.id === data._id;
         });
         if(isFavorite.length >= 1){
             setInFavorites(true);
@@ -15,10 +15,11 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked,
     }, []);
 
     const handleSwitch  = (event) => {
+        setChecked(event.target.checked);
         setInFavorites(event.target.checked);
-        if(inFavorites){
+        if(event.target.checked){
             setFavorite({
-                id: data.id,
+                id: data._id,
                 type: "comics",
                 title: data.title,
                 description: data.description,
@@ -28,15 +29,13 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked,
         }
         else {
             setNotFavorite({
-                id: data.id,
+                id: data._id,
                 user: token
             });
         }
     }
-    handleSwitch();
 
     const url = data.thumbnail.path + "." + data.thumbnail.extension; 
-
     
 
   return (

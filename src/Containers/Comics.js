@@ -60,8 +60,6 @@ const classes = useStyles();
     setSearch(event.target.value);
   }
 
-//   console.log(data);
-
   // render of the comics collection in an alphabetical order
 
   return !isLoading ?(
@@ -83,7 +81,7 @@ const classes = useStyles();
                 token={token}
                 setFavorite={setFavorite}
                 setNotFavorite={setNotFavorite}
-                // setChecked={setChecked}
+                setChecked={setChecked}
                 favoritesList={favoritesList}
                 />
                 )

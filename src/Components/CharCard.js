@@ -18,7 +18,7 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
     },[]);
 
     const handleSwitch  = (event) => {
-        // setChecked(event.target.checked);
+        setChecked(event.target.checked);
         setInFavorites(event.target.checked);
         if(event.target.checked){
             setFavorite({
@@ -39,7 +39,6 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
         }
     }
     const path = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
-    console.log(inFavorites);
 
   return (
     <div className="card" >

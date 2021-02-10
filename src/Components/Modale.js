@@ -37,11 +37,9 @@ const Modale = ({handleModale, modale}) => {
  // CALL API HTTP METHODE POST  
  const handleSubmitSignUp = async (event) => {
   event.preventDefault();
-  console.log(contact);
 
     await axios.post(`${process.env.REACT_APP_BACK_API}/user/signup`, contact)
     .then(response => {
-      console.log(response.data);
       Cookies.set("token", response.data.token,{ expires: 7 });
       handleModale(false);
     })
@@ -52,11 +50,9 @@ const Modale = ({handleModale, modale}) => {
 
   const handleSubmitSignIn = async (event) => {
     event.preventDefault();
-    // console.log(contact);
   
       await axios.post(process.env.REACT_APP_BACK_API+"/user/signIn", contact)
       .then(response => {
-        // console.log(response.data);
         Cookies.set("token", response.data.token,{ expires: 7 });
         handleModale(false);
       })

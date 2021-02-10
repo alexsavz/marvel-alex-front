@@ -14,8 +14,6 @@ const Header = () => {
         return setModale(arg);
     }
 
-    // console.log(modale);
-
   return (
     <>
     <Modale handleModale={handleModale} modale={modale} />

@@ -20,9 +20,6 @@ const ComicsCharacterId = () => {
         fetchData();
     }, [id]);
 
-    console.log(id);
-    console.log(data);
-
     return !isLoading?(
         <div className="wrapper">
             <div className="character-card">

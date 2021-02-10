@@ -18,7 +18,7 @@ import ComicsCharacterId from './Containers/ComicsCharacterId';
 function App() {
 
   const [token, setToken] = useState(Cookies.get("token") || null);
-  // const [checked, setChecked] = useState(null);
+  const [checked, setChecked] = useState(null);
   const [favorite, setFavorite] = useState({
     id:"",
     type:"",
@@ -45,7 +45,7 @@ function App() {
 
   // favorite or not favorite statement and db management
   useEffect(() => {
-    // if(checked){
+    if(checked){
       const HandleFavorite = async () => {
         try {
           if(favorite.title){
@@ -58,15 +58,14 @@ function App() {
             formData.append("user", favorite.user);
     
           await axios.post(`${process.env.REACT_APP_BACK_API}/createfav`, formData);
-          console.log("save in the db");
           }
         } catch (error) {
           console.log(error.message);
         }
       }
       HandleFavorite();
-    // }
-    // else{
+    }
+    else{
       const HandleNotFavorite = async () => {
         try {
           if(notFavorite.id){
@@ -81,7 +80,7 @@ function App() {
         }
       }
       HandleNotFavorite();
-    // }
+    }
     if(token){
       const fetchFavoritesList = async () => {
         const list = await axios.get(`${process.env.REACT_APP_BACK_API}/list`,{
@@ -93,12 +92,8 @@ function App() {
       } 
       fetchFavoritesList();
     }
-  }, [favorite, notFavorite,token]);
+  }, [checked,favorite, notFavorite,token]);
   
-  // console.log(favorite);
-  // console.log(checked);
-  // console.log(notFavorite);
-  // console.log(favoritesList);
 
   return (
     <Router>
@@ -108,7 +103,7 @@ function App() {
           <Characters 
           token={token} 
           setFavorite={setFavorite} 
-          // setChecked={setChecked}
+          setChecked={setChecked}
           setNotFavorite={setNotFavorite}
           favoritesList={favoritesList}
            />
@@ -120,7 +115,7 @@ function App() {
           <Comics 
           token={token} 
           setFavorite={setFavorite} 
-          // setChecked={setChecked}
+          setChecked={setChecked}
           setNotFavorite={setNotFavorite}
           favoritesList={favoritesList}
           />

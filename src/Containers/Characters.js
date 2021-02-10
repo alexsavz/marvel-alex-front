@@ -57,9 +57,6 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, checked, token, fa
     }
   }
 
-  console.log(data);
-  // console.log(totalPages);
-
   return !isLoading ?(
     <div className="wrapper">
       <h1>Liste des personnages marvel</h1>
@@ -82,7 +79,7 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, checked, token, fa
               description={result.description}
               setFavorite={setFavorite}
               setNotFavorite={setNotFavorite}
-              // setChecked={setChecked}
+              setChecked={setChecked}
               token={token}
               favoritesList={favoritesList}
               />
