@@ -6,11 +6,13 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked,
     const [inFavorites, setInFavorites] = useState(false);
 
     useEffect(() => {
-        const isFavorite = favoritesList.filter(favorite => {
-            return favorite.id === data._id;
-        });
-        if(isFavorite.length >= 1){
-            setInFavorites(true);
+        if(favoritesList){
+            const isFavorite = favoritesList.filter(favorite => {
+                return favorite.id === data._id;
+            });
+            if(isFavorite.length >= 1){
+                setInFavorites(true);
+            }
         }
     }, []);
 
