@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Switch from '@material-ui/core/Switch';
+import emptyImage from "../Assets/heroimage.jpg";
 
 const CharCard = ({index, id, title, description, url, setFavorite, setNotFavorite, setChecked, token, favoritesList}) => {
 
@@ -14,10 +15,10 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
         if(isFavorite.length >= 1){
             setInFavorites(true);
         }
-    }, []);
+    },[]);
 
     const handleSwitch  = (event) => {
-        setChecked(event.target.checked);
+        // setChecked(event.target.checked);
         setInFavorites(event.target.checked);
         if(event.target.checked){
             setFavorite({
@@ -37,11 +38,13 @@ const CharCard = ({index, id, title, description, url, setFavorite, setNotFavori
             });
         }
     }
+    const path = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
+    console.log(inFavorites);
 
   return (
     <div className="card" >
         <div className="card-picture" onClick={() => history.push(`comics/${id}`)}>
-            <img className="character" src={url} alt="character"/>
+            <img className="character" src={ url === path ? emptyImage : url } alt="character"/>
         </div>
         <div className="card-content gradient">
             <h3>{title}</h3>

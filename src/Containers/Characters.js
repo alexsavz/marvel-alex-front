@@ -56,8 +56,8 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, checked, token, fa
       setSkip(100*(number-1));
     }
   }
-  // Save the selected character in the db
-  // console.log(data);
+
+  console.log(data);
   // console.log(totalPages);
 
   return !isLoading ?(
@@ -82,8 +82,7 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, checked, token, fa
               description={result.description}
               setFavorite={setFavorite}
               setNotFavorite={setNotFavorite}
-              setChecked={setChecked}
-              checked={checked}
+              // setChecked={setChecked}
               token={token}
               favoritesList={favoritesList}
               />

@@ -83,7 +83,7 @@ const classes = useStyles();
                 token={token}
                 setFavorite={setFavorite}
                 setNotFavorite={setNotFavorite}
-                setChecked={setChecked}
+                // setChecked={setChecked}
                 favoritesList={favoritesList}
                 />
                 )

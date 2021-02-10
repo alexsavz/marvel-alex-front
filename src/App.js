@@ -18,7 +18,7 @@ import ComicsCharacterId from './Containers/ComicsCharacterId';
 function App() {
 
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [checked, setChecked] = useState(null);
+  // const [checked, setChecked] = useState(null);
   const [favorite, setFavorite] = useState({
     id:"",
     type:"",
@@ -45,7 +45,7 @@ function App() {
 
   // favorite or not favorite statement and db management
   useEffect(() => {
-    if(checked){
+    // if(checked){
       const HandleFavorite = async () => {
         try {
           if(favorite.title){
@@ -65,8 +65,8 @@ function App() {
         }
       }
       HandleFavorite();
-    }
-    else{
+    // }
+    // else{
       const HandleNotFavorite = async () => {
         try {
           if(notFavorite.id){
@@ -81,7 +81,7 @@ function App() {
         }
       }
       HandleNotFavorite();
-    }
+    // }
     if(token){
       const fetchFavoritesList = async () => {
         const list = await axios.get(`${process.env.REACT_APP_BACK_API}/list`,{
@@ -93,10 +93,10 @@ function App() {
       } 
       fetchFavoritesList();
     }
-  }, [checked, favorite, notFavorite,token]);
+  }, [favorite, notFavorite,token]);
   
   // console.log(favorite);
-  console.log(checked);
+  // console.log(checked);
   // console.log(notFavorite);
   // console.log(favoritesList);
 
@@ -108,10 +108,9 @@ function App() {
           <Characters 
           token={token} 
           setFavorite={setFavorite} 
-          setChecked={setChecked}
+          // setChecked={setChecked}
           setNotFavorite={setNotFavorite}
           favoritesList={favoritesList}
-          checked={checked}
            />
         </Route>
         <Route path="/comics/:id">
@@ -121,10 +120,9 @@ function App() {
           <Comics 
           token={token} 
           setFavorite={setFavorite} 
-          setChecked={setChecked}
+          // setChecked={setChecked}
           setNotFavorite={setNotFavorite}
           favoritesList={favoritesList}
-          checked={checked}
           />
         </Route>
         <Route path="/favoris">

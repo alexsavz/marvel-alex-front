@@ -12,13 +12,11 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked,
         if(isFavorite.length >= 1){
             setInFavorites(true);
         }
-    }, [favoritesList, data.id]);
-
-    const url = data.thumbnail.path + "." + data.thumbnail.extension; 
+    }, []);
 
     const handleSwitch  = (event) => {
-        setChecked(event.target.checked);
-        if(event.target.checked){
+        setInFavorites(event.target.checked);
+        if(inFavorites){
             setFavorite({
                 id: data.id,
                 type: "comics",
@@ -35,6 +33,11 @@ const ComicCard = ({index, data, token, setFavorite, setNotFavorite, setChecked,
             });
         }
     }
+    handleSwitch();
+
+    const url = data.thumbnail.path + "." + data.thumbnail.extension; 
+
+    
 
   return (
         <div className="card">
