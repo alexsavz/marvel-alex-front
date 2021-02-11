@@ -57,8 +57,6 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
     }
   }
 
-  console.log("Character page");
-
   return !isLoading ?(
     <div className="wrapper">
       <h1>Liste des personnages marvel</h1>

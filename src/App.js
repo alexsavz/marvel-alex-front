@@ -94,8 +94,6 @@ function App() {
     }
   }, [checked, favorite, notFavorite, token]);
   
-
-  console.log(checked);
   return (
     <Router>
       <Header token={token} setUser={setUser} />
