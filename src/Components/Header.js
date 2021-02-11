@@ -6,16 +6,6 @@ import disney from "../Assets/svod_logo_white-homepage.png";
 
 const Header = ({token, setUser}) => {
 
-    const styleLogout = {
-        borderLeft: "1 solid var(--lightgray)",
-        borderRight: "1 solid var(--lightgray)",
-        flex: 3,
-        textAlign: "center",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }
-
     const history = useHistory();
     const [modale, setModale] = useState(null);
 

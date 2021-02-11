@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useHistory, Redirect} from "react-router-dom";
+import {useHistory, Link} from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import marvel from "../Assets/nav-logos-insider.png";
@@ -43,7 +43,7 @@ const Modale = ({handleModale, modale}) => {
     .then(response => {
       Cookies.set("token", response.data.token,{ expires: 7 });
       handleModale(false);
-      history.push("/");
+      <Link to="/" />;
     })
     .catch(error => {
       console.log(error);
@@ -70,8 +70,6 @@ const Modale = ({handleModale, modale}) => {
         console.log(error);
       });
     }
-
-    console.log(message);
 
   return (
     <div className={modale ? "modal" : "hidden"}>
