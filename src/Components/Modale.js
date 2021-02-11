@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useHistory} from "react-router-dom";
+import {useHistory, Redirect} from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import marvel from "../Assets/nav-logos-insider.png";
@@ -8,6 +8,7 @@ const Modale = ({handleModale, modale}) => {
 
   const [contact, setContact] = useState({email: "", password: "", ConfirmPassword: ""});
   const [signUp, setSignUp] = useState(false);
+  const [message, setMessage] = useState(null);
   const history = useHistory();
   
   // Controlled inputs
@@ -42,9 +43,11 @@ const Modale = ({handleModale, modale}) => {
     .then(response => {
       Cookies.set("token", response.data.token,{ expires: 7 });
       handleModale(false);
+      history.push("/");
     })
     .catch(error => {
       console.log(error);
+      setMessage("Mauvais email et/ou mot de passe");
     });
   }
 
@@ -55,11 +58,20 @@ const Modale = ({handleModale, modale}) => {
       .then(response => {
         Cookies.set("token", response.data.token,{ expires: 7 });
         handleModale(false);
+        history.push("/");
       })
       .catch(error => {
+        if (error.response.status === 401) {
+        setMessage("Mauvais mot de passe");
+        }
+        else{
+          setMessage("Erreur d'email");
+        }
         console.log(error);
       });
     }
+
+    console.log(message);
 
   return (
     <div className={modale ? "modal" : "hidden"}>
@@ -75,7 +87,8 @@ const Modale = ({handleModale, modale}) => {
             {
               signUp && <input type="password" placeholder="Confirmez votre mot-de-passe" name="ConfirmPassword" onChange={handleChange} value={contact.ConfirmPassword}/>
             }
-            <button onClick={() => { history.push("/");}} className="submit-button" type="submit">Envoyer</button>
+            <button className="submit-button" type="submit">Envoyer</button>
+            {message && <div className="">{message}</div>}
             <div className="hr"></div>
             {
               !signUp && <button className="create-account" onClick={() => {setSignUp(true);}}>CR&Eacute;ER UN COMPTE</button>

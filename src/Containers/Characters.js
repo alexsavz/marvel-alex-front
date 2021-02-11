@@ -8,7 +8,7 @@ import Loader from "../Components/Loader";
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
-const Characters = ({setFavorite, setNotFavorite, setChecked, checked, token, favoritesList}) => {
+const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesList}) => {
 
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +42,7 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, checked, token, fa
       setIsLoading(false);
     };
     fetchData();
-  }, [value, skip, limit]);
+  }, [token,value, skip, limit]);
 
   const handleSearch = event => {
     setSearch(event.target.value);

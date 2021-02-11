@@ -92,7 +92,7 @@ function App() {
       } 
       fetchFavoritesList();
     }
-  }, [checked,favorite, notFavorite,token]);
+  }, [checked, favorite, notFavorite,token]);
   
 
   return (

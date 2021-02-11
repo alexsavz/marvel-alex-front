@@ -6,12 +6,27 @@ import disney from "../Assets/svod_logo_white-homepage.png";
 
 const Header = ({token, setUser}) => {
 
+    const styleLogout = {
+        borderLeft: "1 solid var(--lightgray)",
+        borderRight: "1 solid var(--lightgray)",
+        flex: 3,
+        textAlign: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }
+
     const history = useHistory();
     const [modale, setModale] = useState(null);
 
 
     const handleModale = (arg) => {
         return setModale(arg);
+    }
+
+    const handleLogout = () => {
+        setUser(null);
+        history.push("/");
     }
 
   return (
@@ -21,7 +36,9 @@ const Header = ({token, setUser}) => {
         <div className="header-one">
             {
                 token ? 
-                <div onClick={() => {setUser(null);}}>Se déconnecter</div> 
+                <div className="header-image" onClick={() => { handleLogout() }}>
+                    Se déconnecter
+                </div> 
                 :
                 <div className="header-image" onClick={() => handleModale(true)}>
                     Sign In | Join
