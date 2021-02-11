@@ -4,7 +4,7 @@ import Modale from "../Components/Modale";
 import marvelLogo from "../Assets/langfr-1920px-MarvelLogo.svg_uw9pi8.png";
 import disney from "../Assets/svod_logo_white-homepage.png";
 
-const Header = () => {
+const Header = ({token, setUser}) => {
 
     const history = useHistory();
     const [modale, setModale] = useState(null);
@@ -19,9 +19,14 @@ const Header = () => {
     <Modale handleModale={handleModale} modale={modale} />
     <header className="page-header">
         <div className="header-one">
-            <div className="header-image" onClick={() => handleModale(true)}>
+            {
+                token ? 
+                <div onClick={() => {setUser(null);}}>Se déconnecter</div> 
+                :
+                <div className="header-image" onClick={() => handleModale(true)}>
                     Sign In | Join
-            </div>
+                </div>  
+            }
             <div className="header-image">
                 <img src={marvelLogo} alt="marvel"/>
             </div>
