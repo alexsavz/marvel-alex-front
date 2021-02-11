@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Switch from '@material-ui/core/Switch';
 import emptyImage from "../Assets/heroimage.jpg";
+import Cookies from "js-cookie";
 
-const CharCard = ({index, id, title, description, url, setFavorite, setNotFavorite, setChecked, token, favoritesList}) => {
+const CharCard = ({index, id, title, description, url, setFavorite, setNotFavorite, setChecked, favoritesList}) => {
 
     const history = useHistory();
     const [inFavorites, setInFavorites] = useState(false);
+
+    const token = 
+    Cookies.get("token");
 
     useEffect(() => {
         const isFavorite = favoritesList.filter(favorite => {

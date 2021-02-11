@@ -16,23 +16,28 @@ const Modale = ({handleModale, modale}) => {
   const handleChange = (event) => {
     const {name, value} = event.target;
   
-    setContact( () => {
-      if(name === "email"){
-        return {
-          email : value, password : contact.password
-        }
-      }
-      else if(name === "password"){
-        return {
-          email : contact.email, password : value 
-        }
-      }
-      else if(name === "ConfirmPassword"){
-        return {
-          email : contact.email, password : contact.password, ConfirmPassword : value 
-        }
+    setContact((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
       }
     });
+    
+    //   if(name === "email"){
+    //     setContact({
+    //       email : value, password : contact.password
+    //     });
+    //   }
+    //   else if(name === "password"){
+    //     setContact({
+    //       email : contact.email, password : value 
+    //     });
+    //   }
+    //   else if(name === "ConfirmPassword"){
+    //     setContact({
+    //       email : contact.email, password : contact.password, ConfirmPassword : value 
+    //     });
+    //   }
  }
 
  // CALL API HTTP METHODE POST  
@@ -43,7 +48,7 @@ const Modale = ({handleModale, modale}) => {
     .then(response => {
       Cookies.set("token", response.data.token,{ expires: 7 });
       handleModale(false);
-      <Link to="/" />;
+      history.push("/");
     })
     .catch(error => {
       console.log(error);

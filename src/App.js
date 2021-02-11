@@ -92,9 +92,10 @@ function App() {
       } 
       fetchFavoritesList();
     }
-  }, [checked, favorite, notFavorite,token]);
+  }, [checked, favorite, notFavorite, token]);
   
 
+  console.log(checked);
   return (
     <Router>
       <Header token={token} setUser={setUser} />

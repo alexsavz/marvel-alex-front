@@ -42,7 +42,7 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
       setIsLoading(false);
     };
     fetchData();
-  }, [token,value, skip, limit]);
+  }, [token, value, skip, limit]);
 
   const handleSearch = event => {
     setSearch(event.target.value);
@@ -56,6 +56,8 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
       setSkip(100*(number-1));
     }
   }
+
+  console.log("Character page");
 
   return !isLoading ?(
     <div className="wrapper">
