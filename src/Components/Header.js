@@ -7,10 +7,7 @@ import disney from "../Assets/svod_logo_white-homepage.png";
 const Header = ({token, setToken, setUser}) => {
 
     const history = useHistory();
-    // const location = useLocation();
     const [modale, setModale] = useState(null);
-    // const {fromModale} = location.state;
-
 
     const handleModale = (arg) => {
         return setModale(arg);

@@ -11,11 +11,6 @@ const Modale = ({handleModale, modale, setToken}) => {
   const [message, setMessage] = useState(null);
   const history = useHistory();
 
-  // Switch modal
-    // const location = useLocation();
-    // const {fromModale} = location.state;
-    // console.log(location);
-  
   // Controlled inputs
   
   const handleChange = (event) => {
