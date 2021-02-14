@@ -96,7 +96,7 @@ function App() {
   
   return (
     <Router>
-      <Header token={token} setUser={setUser} />
+      <Header token={token} setUser={setUser} setToken={setToken} />
       <Switch>
         <Route exact path="/">
           <Characters 

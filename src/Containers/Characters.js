@@ -34,15 +34,14 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
   useEffect(()=> {
     const fetchData = async () => {
       setLimit(100);
-      setIsLoading(true);
-      const response = await axios.get(`${process.env.REACT_APP_MARVEL_API}/characters?
-      &skip=${skip}&limit=${limit}&name=${value}&${process.env.REACT_APP_PRIVATE_KEY}`);
+      const response = await axios.get(`${process.env.REACT_APP_MARVEL_API}/characters?$
+      &skip=${search?"":skip}&limit=${limit}&name=${value}&${process.env.REACT_APP_PRIVATE_KEY}`);
       setData(response.data.results);
       setTotalResults(response.data.count);
       setIsLoading(false);
     };
     fetchData();
-  }, [token, value, skip, limit]);
+  }, [search,token, value, skip, limit]);
 
   const handleSearch = event => {
     setSearch(event.target.value);
@@ -60,7 +59,6 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
   return !isLoading ?(
     <div className="wrapper">
       <h1>Liste des personnages marvel</h1>
-      {/* <input type="number" onChange={handlePage}/> */}
       <Searchbar 
       handleSearch={handleSearch} 
       value={search} 
@@ -86,12 +84,15 @@ const Characters = ({setFavorite, setNotFavorite, setChecked, token, favoritesLi
               )
           })
         }
+      </div>
+        {
+        !search &&
         <div className="pagination">
           <div className={classes.root}>
             <Pagination count={totalPages} onChange={(event, page) => handlePage(page)} variant="outlined" />
           </div>
         </div>
-      </div>
+        }
     </div>
   )
     : 

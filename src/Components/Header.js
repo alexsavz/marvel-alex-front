@@ -4,10 +4,12 @@ import Modale from "../Components/Modale";
 import marvelLogo from "../Assets/langfr-1920px-MarvelLogo.svg_uw9pi8.png";
 import disney from "../Assets/svod_logo_white-homepage.png";
 
-const Header = ({token, setUser}) => {
+const Header = ({token, setToken, setUser}) => {
 
     const history = useHistory();
+    // const location = useLocation();
     const [modale, setModale] = useState(null);
+    // const {fromModale} = location.state;
 
 
     const handleModale = (arg) => {
@@ -21,7 +23,7 @@ const Header = ({token, setUser}) => {
 
   return (
     <>
-    <Modale handleModale={handleModale} modale={modale} />
+    <Modale handleModale={handleModale} modale={modale} setToken={setToken} />
     <header className="page-header">
         <div className="header-one">
             {

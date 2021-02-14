@@ -1,15 +1,20 @@
 import {useState} from "react";
-import {useHistory, Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import marvel from "../Assets/nav-logos-insider.png";
 
-const Modale = ({handleModale, modale}) => {
+const Modale = ({handleModale, modale, setToken}) => {
 
   const [contact, setContact] = useState({email: "", password: "", ConfirmPassword: ""});
   const [signUp, setSignUp] = useState(false);
   const [message, setMessage] = useState(null);
   const history = useHistory();
+
+  // Switch modal
+    // const location = useLocation();
+    // const {fromModale} = location.state;
+    // console.log(location);
   
   // Controlled inputs
   
@@ -22,22 +27,6 @@ const Modale = ({handleModale, modale}) => {
         [name]: value,
       }
     });
-    
-    //   if(name === "email"){
-    //     setContact({
-    //       email : value, password : contact.password
-    //     });
-    //   }
-    //   else if(name === "password"){
-    //     setContact({
-    //       email : contact.email, password : value 
-    //     });
-    //   }
-    //   else if(name === "ConfirmPassword"){
-    //     setContact({
-    //       email : contact.email, password : contact.password, ConfirmPassword : value 
-    //     });
-    //   }
  }
 
  // CALL API HTTP METHODE POST  
@@ -47,6 +36,7 @@ const Modale = ({handleModale, modale}) => {
     await axios.post(`${process.env.REACT_APP_BACK_API}/user/signup`, contact)
     .then(response => {
       Cookies.set("token", response.data.token,{ expires: 7 });
+      setToken(response.data.token);
       handleModale(false);
       history.push("/");
     })
@@ -62,6 +52,7 @@ const Modale = ({handleModale, modale}) => {
       await axios.post(process.env.REACT_APP_BACK_API+"/user/signIn", contact)
       .then(response => {
         Cookies.set("token", response.data.token,{ expires: 7 });
+        setToken(response.data.token);
         handleModale(false);
         history.push("/");
       })

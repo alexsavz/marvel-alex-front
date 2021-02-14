@@ -47,13 +47,13 @@ const classes = useStyles();
     const fetchData = async () => {
       setLimit(100);
       const response = await axios.get(`${process.env.REACT_APP_MARVEL_API}/comics?
-      title=${value}&skip=${skip}&limit=${limit}&${process.env.REACT_APP_PRIVATE_KEY}`);
+      title=${value}&skip=${search?"":skip}&limit=${limit}&${process.env.REACT_APP_PRIVATE_KEY}`);
       setData(response.data.results);
       setIsLoading(false);
       setTotalResults(response.data.count);
     };
     fetchData();
-  }, [value, skip, limit]);
+  }, [search,value, skip, limit]);
 
 
   const handleSearch = event => {
@@ -88,11 +88,14 @@ const classes = useStyles();
             })
         }
         </div>
-      <div className="pagination">
+      {
+        !search &&
+        <div className="pagination">
           <div className={classes.root}>
             <Pagination count={totalPages} onChange={(event, page) => handlePage(page)} variant="outlined" />
           </div>
         </div>
+      }
     </div>
   )
     : 
